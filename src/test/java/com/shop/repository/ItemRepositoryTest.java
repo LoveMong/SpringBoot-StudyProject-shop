@@ -163,9 +163,37 @@ class ItemRepositoryTest {
         for (Item item : itemList) {
             System.out.println(item.toString());
         }
+        //then
+    }
+
+    @Test
+    @DisplayName("@Query를 이용한 상품 조회 테스트")
+    public void findByItemDetailTest() throws Exception {
+        //given
+        for (int i = 1; i <= 10; i++) {
+            Item item = new Item();
+            item.setItemNm("테스트 상품" + i);
+            item.setPrice(10000 + i);
+            item.setItemDetail("테스트 상품 상세 설명" + i);
+            item.setItemSellStatus(ItemSellStatus.SELL);
+            item.setStockNumber(100);
+            item.setRegTime(LocalDateTime.now());
+            item.setUpdateTime(LocalDateTime.now());
+            Item savedItem = itemRepository.save(item);
+        }
+
+        //when
+        List<Item> itemList = itemRepository.findByItemDetail("테스트 상품 상세 설명");
+
+        for (Item item : itemList) {
+            System.out.println(item.toString());
+        }
 
         //then
 
+
     }
+
+
 
 }

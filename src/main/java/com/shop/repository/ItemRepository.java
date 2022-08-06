@@ -2,6 +2,8 @@ package com.shop.repository;
 
 import com.shop.entity.Item;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -21,4 +23,9 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
     /* 내림차순 또는 오름차순으로 조회
        오름(내림)차순 : OrderBy + 속성명 + Asc(Desc) */
     List<Item> findByPriceLessThanOrderByPriceDesc(Integer price);
+
+
+    /* JPQL(객체지향 쿼리 언어) 사용하여 복잡한 쿼리도 처리 가능 */
+    @Query("select i from Item i where i.itemDetail like %:itemDetail% order by i.price desc ")
+    List<Item> findByItemDetail(@Param("itemDetail") String itemDetail);
 }
