@@ -2,7 +2,6 @@ package com.shop.controller;
 
 
 import com.shop.dto.ItemDto;
-import com.shop.entity.Item;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
