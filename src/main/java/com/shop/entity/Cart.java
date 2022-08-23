@@ -22,4 +22,5 @@ public class Cart extends BaseEntity {
     @OneToOne(fetch = FetchType.LAZY) // 회원 엔티티와 일대일로 매핑
     @JoinColumn(name = "member_id") // 매핑할 외래키 지정
     private Member member;
+
 }
