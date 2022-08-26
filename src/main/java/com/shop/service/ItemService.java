@@ -50,7 +50,7 @@ public class ItemService {
 
     }
 
-    @Transactional
+    @org.springframework.transaction.annotation.Transactional(readOnly = true) // readOnly = true -> JPA가 더티체킹(변경감지)을 수행하지 않아서 성능 향샹
     public ItemFormDto getItemDtl(Long itemId) {
         List<ItemImg> itemImgList = itemImgRepository.findByItemIdOrderByIdAsc(itemId);
         List<ItemImgDto> itemImgDtoList = new ArrayList<>();
